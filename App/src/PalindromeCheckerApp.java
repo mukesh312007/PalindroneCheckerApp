@@ -1,70 +1,97 @@
-import java.util.LinkedList;
-import java.util.Scanner;
-
 /**
- * ================================================================
- * MAIN CLASS - UseCase8PalindromeCheckerApp
- * ================================================================
+ * ============================================================
+ * MAIN CLASS – UseCase13PalindromeCheckerApp
+ * ============================================================
  *
- * Use Case 8: Linked List Based Palindrome Checker
+ * Use Case 13: Performance Comparison
  *
  * Description:
- * This class checks whether a string is a palindrome
- * using a LinkedList.
+ * This class measures and compares the execution
+ * performance of palindrome validation algorithms.
  *
- * Characters are added to the list and then compared
- * by removing elements from both ends:
- * - removeFirst()
- * - removeLast()
+ * @author Mukesh Vaithiya
+ * @version 2.0
+ * At this stage, the application:
+ * - Uses a palindrome strategy implementation
+ * - Captures execution start and end time
+ * - Calculates total execution duration
+ * - Displays benchmarking results
  *
- * This demonstrates how LinkedList supports
- * double-ended operations for symmetric validation.
+ * The goal is to introduce benchmarking concepts.
+ *
+ * @author Mukesh Vaithiya
+ * @version 5.0
+ * This use case demonstrates divide-and-conquer
+ * logic using method recursion.
  *
  * @author Mukesh Vaithiya
  * @version 8.0
+ * @version 9.0
+ * @author Mukesh Vaithiya
+ * @version 6.0
+ * @version 12.0
+ * @version 11.0
+ * The goal is to establish a clear startup flow.
+ *
+ * @author Mukesh Vaithiya
+ * @version 10.0
+ * @version 1.0
+ * @author Mukesh Vaithiya
+ * @version 7.0
+ * @version 4.0
+ * @version 13.0
  */
+
+import java.util.Scanner;
 
 public class PalindromeCheckerApp {
 
     /**
-     * Application entry point for UC8.
+     * Application entry point for UC13.
+     *
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
+
         System.out.print("Enter a string: ");
         String input = scanner.nextLine();
 
-        // Normalize input (optional but recommended)
-        input = input.replaceAll("\\s+", "").toLowerCase();
+        // Normalize input
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
 
-        LinkedList<Character> list = new LinkedList<>();
+        // Start time
+        long startTime = System.nanoTime();
 
-        // Add characters to LinkedList
-        for (char ch : input.toCharArray()) {
-            list.add(ch);
-        }
-
+        // Palindrome logic
         boolean isPalindrome = true;
 
-        // Compare from both ends
-        while (list.size() > 1) {
-            char first = list.removeFirst();
-            char last = list.removeLast();
+        int start = 0;
+        int end = normalized.length() - 1;
 
-            if (first != last) {
+        while (start < end) {
+            if (normalized.charAt(start) != normalized.charAt(end)) {
                 isPalindrome = false;
                 break;
             }
+            start++;
+            end--;
         }
 
-        // Output result
+        // End time
+        long endTime = System.nanoTime();
+
+        long duration = endTime - startTime;
+
+        // Result
         if (isPalindrome) {
-            System.out.println("The input string is a PALINDROME.");
+            System.out.println("The string is a Palindrome.");
         } else {
-            System.out.println("The input string is NOT a palindrome.");
+            System.out.println("The string is NOT a Palindrome.");
         }
+
+        System.out.println("Execution Time: " + duration + " nanoseconds");
 
         scanner.close();
     }
