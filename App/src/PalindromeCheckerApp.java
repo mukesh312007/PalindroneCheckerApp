@@ -1,26 +1,33 @@
 /**
  * ============================================================
- * MAIN CLASS – UseCase10PalindromeCheckerApp
+ * MAIN CLASS – UseCase13PalindromeCheckerApp
  * ============================================================
  *
- * Use Case 10: Normalized Palindrome Validation
+ * Use Case 13: Performance Comparison
  *
  * Description:
- * This class validates a palindrome after preprocessing
- * the input string.
+ * This class measures and compares the execution
+ * performance of palindrome validation algorithms.
  *
- * Normalization includes:
- * - Removing spaces and symbols
- * - Converting to lowercase
+ * @author Mukesh Vaithiya
+ * @version 2.0
+ * At this stage, the application:
+ * - Uses a palindrome strategy implementation
+ * - Captures execution start and end time
+ * - Calculates total execution duration
+ * - Displays benchmarking results
  *
- * This ensures the palindrome check is logical rather
- * than character-format dependent.
+ * The goal is to introduce benchmarking concepts.
  *
- * Example:
- * "A man a plan a canal Panama"
+ * The goal is to establish a clear startup flow.
  *
  * @author Mukesh Vaithiya
  * @version 10.0
+ * @version 1.0
+ * @author Mukesh Vaithiya
+ * @version 7.0
+ * @version 4.0
+ * @version 13.0
  */
 
 import java.util.Scanner;
@@ -28,7 +35,7 @@ import java.util.Scanner;
 public class PalindromeCheckerApp {
 
     /**
-     * Application entry point for UC10.
+     * Application entry point for UC13.
      *
      * @param args Command-line arguments
      */
@@ -36,28 +43,43 @@ public class PalindromeCheckerApp {
 
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Enter a sentence: ");
+        System.out.print("Enter a string: ");
         String input = scanner.nextLine();
 
-        // Normalize string: remove non-alphanumeric characters
+        // Normalize input
         String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
 
+        // Start time
+        long startTime = System.nanoTime();
+
+        // Palindrome logic
         boolean isPalindrome = true;
 
-        // Compare characters from both ends
-        for (int i = 0; i < normalized.length() / 2; i++) {
+        int start = 0;
+        int end = normalized.length() - 1;
 
-            if (normalized.charAt(i) != normalized.charAt(normalized.length() - 1 - i)) {
+        while (start < end) {
+            if (normalized.charAt(start) != normalized.charAt(end)) {
                 isPalindrome = false;
                 break;
             }
+            start++;
+            end--;
         }
 
+        // End time
+        long endTime = System.nanoTime();
+
+        long duration = endTime - startTime;
+
+        // Result
         if (isPalindrome) {
             System.out.println("The string is a Palindrome.");
         } else {
             System.out.println("The string is NOT a Palindrome.");
         }
+
+        System.out.println("Execution Time: " + duration + " nanoseconds");
 
         scanner.close();
     }
