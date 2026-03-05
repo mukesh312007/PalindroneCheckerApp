@@ -19,6 +19,8 @@
  *
  * The goal is to introduce benchmarking concepts.
  *
+ * @author Mukesh Vaithiya
+ * @version 5.0
  * This use case demonstrates divide-and-conquer
  * logic using method recursion.
  *
