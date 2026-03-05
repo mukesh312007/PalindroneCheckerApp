@@ -1,56 +1,59 @@
 import java.util.Stack;
+import java.util.Queue;
+import java.util.LinkedList;
 
 /**
  * =========================================================
- * MAIN CLASS - UseCase5PalindromeCheckerApp
+ * MAIN CLASS - UseCase6PalindromeCheckerApp
  * =========================================================
  *
- * Use Case 5: Stack Based Palindrome Checker
+ * Use Case 6: Queue + Stack Fairness Check
  *
  * Description:
- * This class validates a palindrome using a Stack
- * data structure which follows the LIFO principle.
+ * This class demonstrates palindrome validation using
+ * two different data structures:
+ *
+ * - Queue (FIFO)
+ * - Stack (LIFO)
  *
  * @author Developer
- * @version 5.0
+ * @version 6.0
  */
 
 public class PalindromeCheckerApp {
 
     /**
-     * Application entry point for UC5.
+     * Application entry point for UC6.
      *
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
 
-        // Declare and initialize the input string
-        String input = "noon";
+        String input = "level";
 
-        // Create a Stack to store characters
         Stack<Character> stack = new Stack<>();
+        Queue<Character> queue = new LinkedList<>();
 
-        // Push each character of the string into the stack
+        // Insert characters into both structures
         for (char c : input.toCharArray()) {
-            stack.push(c);
+            stack.push(c);      // LIFO
+            queue.add(c);       // FIFO
         }
 
-        // Assume palindrome initially
         boolean isPalindrome = true;
 
-        // Iterate again through original string
-        for (char c : input.toCharArray()) {
+        // Compare removing from both
+        while (!stack.isEmpty() && !queue.isEmpty()) {
 
-            // Pop from stack (reverse order)
-            char popped = stack.pop();
+            char fromStack = stack.pop();   // last character
+            char fromQueue = queue.remove(); // first character
 
-            if (c != popped) {
+            if (fromStack != fromQueue) {
                 isPalindrome = false;
                 break;
             }
         }
 
-        // Display result
         System.out.println("Input String: " + input);
 
         if (isPalindrome) {
