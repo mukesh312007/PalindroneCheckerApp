@@ -1,49 +1,66 @@
 /**
  * =========================================================
- * MAIN CLASS - UseCase2PalindromeCheckerApp
+ * MAIN CLASS - UseCase4PalindromeCheckerApp
  * =========================================================
  *
- * Use Case 2: Hardcoded Palindrome Validation
+ * Use Case 4: Character Array Based Validation
  *
  * Description:
- * This class demonstrates basic palindrome validation
- * using a hardcoded string value.
+ * This class validates a palindrome by converting
+ * the string into a character array and comparing
+ * characters using the two-pointer technique.
+ *
+ * At this stage, the application:
+ * - Converts string to char array
+ * - Uses start and end pointers
+ * - Compares characters efficiently
+ * - Displays the result
+ *
+ * This reduces extra memory usage.
  *
  * @author Developer
- * @version 2.0
+ * @version 4.0
  */
 
-public class UseCase2PalindromeCheckerApp {
+public class PalindromeCheckerApp {
 
-    /**
-     * Application entry point for UC2.
+    /***
+     * Application entry point for UC4.
      *
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
 
-        // Hardcoded input string
-        String input = "madam";
+        // Hardcoded input
+        String input = "radar";
+
+        // Convert string to character array
+        char[] chars = input.toCharArray();
+
+        int start = 0;
+        int end = chars.length - 1;
 
         boolean isPalindrome = true;
 
-        // Loop only till half of the string length
-        for (int i = 0; i < input.length() / 2; i++) {
+        // Two-pointer comparison
+        while (start < end) {
 
-            // Compare characters from start and end
-            if (input.charAt(i) != input.charAt(input.length() - 1 - i)) {
+            if (chars[start] != chars[end]) {
                 isPalindrome = false;
                 break;
             }
+
+            start++;
+            end--;
         }
 
         // Display result
         System.out.println("Input String: " + input);
 
         if (isPalindrome) {
-            System.out.println("Result: The string is a Palindrome ✅");
+            System.out.println("Result: The string is a Palindrome ");
         } else {
-            System.out.println("Result: The string is NOT a Palindrome ❌");
+            System.out.println("Result: The string is NOT a Palindrome ");
         }
     }
 }
