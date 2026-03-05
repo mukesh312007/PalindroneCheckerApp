@@ -1,45 +1,83 @@
 /**
- * =========================================================
- * MAIN CLASS - UseCase1PalindromeCheckerApp
- * =========================================================
+ * ============================================================
+ * MAIN CLASS – UseCase13PalindromeCheckerApp
+ * ============================================================
  *
- * Use Case 1: Application Entry & Welcome Message
+ * Use Case 13: Performance Comparison
  *
  * Description:
- * This class represents the entry point of the
- * Palindrome Checker Management System.
+ * This class measures and compares the execution
+ * performance of palindrome validation algorithms.
  *
  * At this stage, the application:
- * - Starts execution from the main() method
- * - Displays a welcome message
- * - Shows application version
+ * - Uses a palindrome strategy implementation
+ * - Captures execution start and end time
+ * - Calculates total execution duration
+ * - Displays benchmarking results
  *
- * No palindrome logic is implemented yet.
+ * The goal is to introduce benchmarking concepts.
  *
  * The goal is to establish a clear startup flow.
  *
  * @author Mukesh Vaithiya
  * @version 1.0
+ * @author Mukesh Vaithiya
+ * @version 7.0
+ * @version 4.0
+ * @version 13.0
  */
 
-public class UseCase1PalindromeCheckerApp {
+import java.util.Scanner;
+
+public class PalindromeCheckerApp {
 
     /**
-     * Application entry point.
-     * This is the first method executed by the JVM
-     * when the program starts.
+     * Application entry point for UC13.
      *
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
 
-        System.out.println("=======================================");
-        System.out.println("   Welcome to Palindrome Checker App   ");
-        System.out.println("=======================================");
-        System.out.println("Version: 1.0");
-        System.out.println();
-        System.out.println("Application started successfully.");
-        System.out.println("Palindrome logic will be implemented in upcoming versions.");
+        Scanner scanner = new Scanner(System.in);
 
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
+
+        // Normalize input
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+
+        // Start time
+        long startTime = System.nanoTime();
+
+        // Palindrome logic
+        boolean isPalindrome = true;
+
+        int start = 0;
+        int end = normalized.length() - 1;
+
+        while (start < end) {
+            if (normalized.charAt(start) != normalized.charAt(end)) {
+                isPalindrome = false;
+                break;
+            }
+            start++;
+            end--;
+        }
+
+        // End time
+        long endTime = System.nanoTime();
+
+        long duration = endTime - startTime;
+
+        // Result
+        if (isPalindrome) {
+            System.out.println("The string is a Palindrome.");
+        } else {
+            System.out.println("The string is NOT a Palindrome.");
+        }
+
+        System.out.println("Execution Time: " + duration + " nanoseconds");
+
+        scanner.close();
     }
 }
