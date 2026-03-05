@@ -18,7 +18,7 @@
  * This use case demonstrates divide-and-conquer
  * logic using method recursion.
  *
- * @author Developer
+ * @author Mukesh Vaithiya
  * @version 9.0
  */
 
