@@ -20,7 +20,7 @@ import java.util.Scanner;
  * This demonstrates how LinkedList supports
  * double-ended operations for symmetric validation.
  *
- * @author Developer
+ * @author Mukesh Vaithiya
  * @version 8.0
  */
 
