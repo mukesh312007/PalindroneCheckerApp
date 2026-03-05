@@ -9,6 +9,8 @@
  * This class measures and compares the execution
  * performance of palindrome validation algorithms.
  *
+ * @author Mukesh Vaithiya
+ * @version 2.0
  * At this stage, the application:
  * - Uses a palindrome strategy implementation
  * - Captures execution start and end time
