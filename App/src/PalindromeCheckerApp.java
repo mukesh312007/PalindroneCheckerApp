@@ -1,65 +1,78 @@
-import java.util.Stack;
-import java.util.Queue;
-import java.util.LinkedList;
-
 /**
- * =========================================================
- * MAIN CLASS - UseCase6PalindromeCheckerApp
- * =========================================================
+ * ============================================================
+ * MAIN CLASS – UseCase13PalindromeCheckerApp
+ * ============================================================
  *
- * Use Case 6: Queue + Stack Fairness Check
+ * Use Case 13: Performance Comparison
  *
  * Description:
- * This class demonstrates palindrome validation using
- * two different data structures:
+ * This class measures and compares the execution
+ * performance of palindrome validation algorithms.
  *
- * - Queue (FIFO)
- * - Stack (LIFO)
+ * At this stage, the application:
+ * - Uses a palindrome strategy implementation
+ * - Captures execution start and end time
+ * - Calculates total execution duration
+ * - Displays benchmarking results
+ *
+ * The goal is to introduce benchmarking concepts.
  *
  * @author Mukesh Vaithiya
  * @version 6.0
+ * @version 13.0
  */
+
+import java.util.Scanner;
 
 public class PalindromeCheckerApp {
 
     /**
-     * Application entry point for UC6.
+     * Application entry point for UC13.
      *
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
 
-        String input = "level";
+        Scanner scanner = new Scanner(System.in);
 
-        Stack<Character> stack = new Stack<>();
-        Queue<Character> queue = new LinkedList<>();
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
 
-        // Insert characters into both structures
-        for (char c : input.toCharArray()) {
-            stack.push(c);      // LIFO
-            queue.add(c);       // FIFO
-        }
+        // Normalize input
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
 
+        // Start time
+        long startTime = System.nanoTime();
+
+        // Palindrome logic
         boolean isPalindrome = true;
 
-        // Compare removing from both
-        while (!stack.isEmpty() && !queue.isEmpty()) {
+        int start = 0;
+        int end = normalized.length() - 1;
 
-            char fromStack = stack.pop();   // last character
-            char fromQueue = queue.remove(); // first character
-
-            if (fromStack != fromQueue) {
+        while (start < end) {
+            if (normalized.charAt(start) != normalized.charAt(end)) {
                 isPalindrome = false;
                 break;
             }
+            start++;
+            end--;
         }
 
-        System.out.println("Input String: " + input);
+        // End time
+        long endTime = System.nanoTime();
 
+        long duration = endTime - startTime;
+
+        // Result
         if (isPalindrome) {
-            System.out.println("Result: The string is a Palindrome ✅");
+            System.out.println("The string is a Palindrome.");
         } else {
-            System.out.println("Result: The string is NOT a Palindrome ❌");
+            System.out.println("The string is NOT a Palindrome.");
         }
+
+        System.out.println("Execution Time: " + duration + " nanoseconds");
+
+        scanner.close();
     }
 }
