@@ -17,6 +17,10 @@
  *
  * The goal is to introduce benchmarking concepts.
  *
+ * The goal is to establish a clear startup flow.
+ *
+ * @author Mukesh Vaithiya
+ * @version 1.0
  * @author Mukesh Vaithiya
  * @version 7.0
  * @version 4.0
