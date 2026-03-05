@@ -1,25 +1,29 @@
 /**
  * ============================================================
- * MAIN CLASS – UseCaseRecursivePalindrome
+ * MAIN CLASS – UseCase13PalindromeCheckerApp
  * ============================================================
  *
- * Use Case : Recursive Palindrome Checker
+ * Use Case 13: Performance Comparison
  *
  * Description:
- * This class validates a palindrome using recursion.
+ * This class measures and compares the execution
+ * performance of palindrome validation algorithms.
  *
- * Characters are compared from the outer positions
- * moving inward using recursive calls.
+ * At this stage, the application:
+ * - Uses a palindrome strategy implementation
+ * - Captures execution start and end time
+ * - Calculates total execution duration
+ * - Displays benchmarking results
  *
- * The recursion stops when:
- * - All characters are matched, or
- * - A mismatch is found.
+ * The goal is to introduce benchmarking concepts.
  *
  * This use case demonstrates divide-and-conquer
  * logic using method recursion.
  *
  * @author Mukesh Vaithiya
  * @version 9.0
+ * @author Mukesh Vaithiya
+ * @version 13.0
  */
 
 import java.util.Scanner;
@@ -27,7 +31,7 @@ import java.util.Scanner;
 public class PalindromeCheckerApp {
 
     /**
-     * Application entry point for UC9.
+     * Application entry point for UC13.
      *
      * @param args Command-line arguments
      */
@@ -38,38 +42,41 @@ public class PalindromeCheckerApp {
         System.out.print("Enter a string: ");
         String input = scanner.nextLine();
 
-        boolean result = check(input, 0, input.length() - 1);
+        // Normalize input
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
 
-        if (result) {
+        // Start time
+        long startTime = System.nanoTime();
+
+        // Palindrome logic
+        boolean isPalindrome = true;
+
+        int start = 0;
+        int end = normalized.length() - 1;
+
+        while (start < end) {
+            if (normalized.charAt(start) != normalized.charAt(end)) {
+                isPalindrome = false;
+                break;
+            }
+            start++;
+            end--;
+        }
+
+        // End time
+        long endTime = System.nanoTime();
+
+        long duration = endTime - startTime;
+
+        // Result
+        if (isPalindrome) {
             System.out.println("The string is a Palindrome.");
         } else {
             System.out.println("The string is NOT a Palindrome.");
         }
 
+        System.out.println("Execution Time: " + duration + " nanoseconds");
+
         scanner.close();
-    }
-
-    /**
-     * Recursively checks whether a string is palindrome.
-     *
-     * @param s Input string
-     * @param start Starting index
-     * @param end Ending index
-     * @return true if palindrome, otherwise false
-     */
-    private static boolean check(String s, int start, int end) {
-
-        // Base case: if pointers cross, it is palindrome
-        if (start >= end) {
-            return true;
-        }
-
-        // If characters do not match
-        if (s.charAt(start) != s.charAt(end)) {
-            return false;
-        }
-
-        // Recursive call moving inward
-        return check(s, start + 1, end - 1);
     }
 }
