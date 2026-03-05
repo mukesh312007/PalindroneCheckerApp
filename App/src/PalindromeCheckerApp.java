@@ -20,7 +20,7 @@ import java.util.Scanner;
  * This avoids reversing the string and provides an efficient
  * front-to-back comparison approach.
  *
- * @author Developer
+ * @author Mukesh Vaithiya
  * @version 7.0
  */
 
