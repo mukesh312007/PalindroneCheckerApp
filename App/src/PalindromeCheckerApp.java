@@ -11,7 +11,7 @@ import java.util.Stack;
  * This class validates a palindrome using a Stack
  * data structure which follows the LIFO principle.
  *
- * @author Developer
+ * @author Mukesh Vaithiya
  * @version 5.0
  */
 
