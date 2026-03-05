@@ -1,70 +1,78 @@
-import java.util.Deque;
-import java.util.ArrayDeque;
-import java.util.Scanner;
-
 /**
- * ================================================================
- * MAIN CLASS - UseCase7PalindromeCheckerApp
- * ================================================================
+ * ============================================================
+ * MAIN CLASS – UseCase13PalindromeCheckerApp
+ * ============================================================
  *
- * Use Case 7: Deque Based Optimized Palindrome Checker
+ * Use Case 13: Performance Comparison
  *
  * Description:
- * This class validates a palindrome using a Deque (Double Ended Queue).
+ * This class measures and compares the execution
+ * performance of palindrome validation algorithms.
  *
- * Characters are inserted into the deque and then compared
- * by removing elements from both ends:
- * - removeFirst()
- * - removeLast()
+ * At this stage, the application:
+ * - Uses a palindrome strategy implementation
+ * - Captures execution start and end time
+ * - Calculates total execution duration
+ * - Displays benchmarking results
  *
- * This avoids reversing the string and provides an efficient
- * front-to-back comparison approach.
+ * The goal is to introduce benchmarking concepts.
  *
  * @author Mukesh Vaithiya
  * @version 7.0
+ * @version 4.0
+ * @version 13.0
  */
+
+import java.util.Scanner;
 
 public class PalindromeCheckerApp {
 
     /**
-     * Application entry point for UC7.
+     * Application entry point for UC13.
+     *
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
 
         Scanner scanner = new Scanner(System.in);
+
         System.out.print("Enter a string: ");
         String input = scanner.nextLine();
 
-        // Convert to lowercase and remove spaces (optional normalization)
-        input = input.replaceAll("\\s+", "").toLowerCase();
+        // Normalize input
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
 
-        Deque<Character> deque = new ArrayDeque<>();
+        // Start time
+        long startTime = System.nanoTime();
 
-        // Insert characters into deque
-        for (char ch : input.toCharArray()) {
-            deque.addLast(ch);
-        }
-
+        // Palindrome logic
         boolean isPalindrome = true;
 
-        // Compare from both ends
-        while (deque.size() > 1) {
-            char front = deque.removeFirst();
-            char rear = deque.removeLast();
+        int start = 0;
+        int end = normalized.length() - 1;
 
-            if (front != rear) {
+        while (start < end) {
+            if (normalized.charAt(start) != normalized.charAt(end)) {
                 isPalindrome = false;
                 break;
             }
+            start++;
+            end--;
         }
 
-        // Output result
+        // End time
+        long endTime = System.nanoTime();
+
+        long duration = endTime - startTime;
+
+        // Result
         if (isPalindrome) {
-            System.out.println("The input string is a PALINDROME.");
+            System.out.println("The string is a Palindrome.");
         } else {
-            System.out.println("The input string is NOT a palindrome.");
+            System.out.println("The string is NOT a Palindrome.");
         }
+
+        System.out.println("Execution Time: " + duration + " nanoseconds");
 
         scanner.close();
     }
