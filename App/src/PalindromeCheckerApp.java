@@ -16,7 +16,7 @@ import java.util.LinkedList;
  * - Queue (FIFO)
  * - Stack (LIFO)
  *
- * @author Developer
+ * @author Mukesh Vaithiya
  * @version 6.0
  */
 
