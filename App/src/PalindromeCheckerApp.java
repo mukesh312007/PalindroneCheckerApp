@@ -9,7 +9,7 @@
  * This class demonstrates basic palindrome validation
  * using a hardcoded string value.
  *
- * @author Developer
+ * @author Mukesh Vaithiya
  * @version 2.0
  */
 
