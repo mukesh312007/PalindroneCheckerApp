@@ -1,66 +1,78 @@
 /**
- * =========================================================
- * MAIN CLASS - UseCase4PalindromeCheckerApp
- * =========================================================
+ * ============================================================
+ * MAIN CLASS – UseCase13PalindromeCheckerApp
+ * ============================================================
  *
- * Use Case 4: Character Array Based Validation
+ * Use Case 13: Performance Comparison
  *
  * Description:
- * This class validates a palindrome by converting
- * the string into a character array and comparing
- * characters using the two-pointer technique.
+ * This class measures and compares the execution
+ * performance of palindrome validation algorithms.
  *
  * At this stage, the application:
- * - Converts string to char array
- * - Uses start and end pointers
- * - Compares characters efficiently
- * - Displays the result
+ * - Uses a palindrome strategy implementation
+ * - Captures execution start and end time
+ * - Calculates total execution duration
+ * - Displays benchmarking results
  *
- * This reduces extra memory usage.
+ * The goal is to introduce benchmarking concepts.
  *
  * @author Mukesh Vaithiya
  * @version 4.0
+ * @version 13.0
  */
+
+import java.util.Scanner;
 
 public class PalindromeCheckerApp {
 
-    /***
-     * Application entry point for UC4.
+    /**
+     * Application entry point for UC13.
      *
      * @param args Command-line arguments
      */
     public static void main(String[] args) {
 
-        // Hardcoded input
-        String input = "radar";
+        Scanner scanner = new Scanner(System.in);
 
-        // Convert string to character array
-        char[] chars = input.toCharArray();
+        System.out.print("Enter a string: ");
+        String input = scanner.nextLine();
 
-        int start = 0;
-        int end = chars.length - 1;
+        // Normalize input
+        String normalized = input.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
 
+        // Start time
+        long startTime = System.nanoTime();
+
+        // Palindrome logic
         boolean isPalindrome = true;
 
-        // Two-pointer comparison
-        while (start < end) {
+        int start = 0;
+        int end = normalized.length() - 1;
 
-            if (chars[start] != chars[end]) {
+        while (start < end) {
+            if (normalized.charAt(start) != normalized.charAt(end)) {
                 isPalindrome = false;
                 break;
             }
-
             start++;
             end--;
         }
 
-        // Display result
-        System.out.println("Input String: " + input);
+        // End time
+        long endTime = System.nanoTime();
 
+        long duration = endTime - startTime;
+
+        // Result
         if (isPalindrome) {
-            System.out.println("Result: The string is a Palindrome ");
+            System.out.println("The string is a Palindrome.");
         } else {
-            System.out.println("Result: The string is NOT a Palindrome ");
+            System.out.println("The string is NOT a Palindrome.");
         }
+
+        System.out.println("Execution Time: " + duration + " nanoseconds");
+
+        scanner.close();
     }
 }
